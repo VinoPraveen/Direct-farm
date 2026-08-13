@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Direct - Fresh From Farm To You</title>
+
+  <!-- Link to main css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Home-page-only styles. -->
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="home-page">
+
+  <!-- ===== NAV BAR ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Farm<span>Direct</span></a>
+
+      <!-- Menu link -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="navGreeting" class="nav-greeting nav-hidden"></li>
+        <li id="navLoginLink"><a href="login.html">Login</a></li>
+        <li id="navRegisterLink"><a href="register.html">Register</a></li>
+        <li id="navSellLink" class="nav-hidden"><a href="sell.html">Sell Products</a></li>
+        <li id="navLogoutLink" class="nav-hidden"><a href="#" onclick="logoutUser()">Logout</a></li>
+        <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+
+      <!-- Hamburger  -->
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <!-- Place your hero video file at: videos/farm-hero.mp4 -->
+  <!-- Any short looping farm/produce clip works. If the file is missing,
+       the cream background still shows through. -->
+  <section class="home-hero">
+    <div class="home-hero-inner">
+
+      <div class="home-hero-content">
+        <p class="home-hero-eyebrow">Fresh From Local Farms</p>
+        <h1>Fresh food.<br>Straight from the farm.</h1>
+        <p class="home-hero-desc">Buy fresh fruits and vegetables directly from local farmers &mdash; picked recently, priced fairly, and delivered to your door.</p>
+
+        <div class="home-hero-actions">
+          <a href="products.html" class="btn-primary">Shop Fresh Produce</a>
+          <a href="#categoriesSection" class="home-hero-link">Explore categories &rarr;</a>
+        </div>
+      </div>
+
+      <div class="home-hero-visual">
+        <video class="hero-video" autoplay muted loop playsinline poster="images/hero1.png">
+          <source src="videos/farm-hero.mp4" type="video/mp4">
+        </video>
+        <div class="home-hero-visual-overlay"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <section class="home-trust">
+    <div class="home-trust-list">
+      <div class="home-trust-item">
+        <span class="home-trust-icon">&#10003;</span>
+        <div>
+          <strong>Fresh From Farms</strong>
+          <span>Picked recently, not stored for weeks</span>
+        </div>
+      </div>
+      <div class="home-trust-item">
+        <span class="home-trust-icon">&#10003;</span>
+        <div>
+          <strong>Direct Farmer Connection</strong>
+          <span>No middlemen involved</span>
+        </div>
+      </div>
+      <div class="home-trust-item">
+        <span class="home-trust-icon">&#10003;</span>
+        <div>
+          <strong>Fair Prices</strong>
+          <span>Better rates for farmers and you</span>
+        </div>
+      </div>
+      <div class="home-trust-item">
+        <span class="home-trust-icon">&#10003;</span>
+        <div>
+          <strong>Quality Checked</strong>
+          <span>Every order checked before dispatch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section featured-products">
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-subtitle">A few farm favourites, picked fresh this week</p>
+
+    <div class="product-grid" id="featuredProductGrid">
+      <!-- Featured product cards are added here by JavaScript below -->
+    </div>
+  </section>
+
+  <!-- ===== FEATURED CATEGORIES ===== -->
+  <section class="home-categories" id="categoriesSection">
+    <h2 class="section-title">Shop By Category</h2>
+    <p class="section-subtitle">Browse what's fresh in each aisle</p>
+
+    <div class="home-category-grid">
+      <a href="products.html" class="home-category-card">
+        <img src="images/cat-vegetables.png" alt="Vegetables">
+        <div class="home-category-card-body">
+          <p>Vegetables</p>
+          <span class="home-category-explore">Explore &rarr;</span>
+        </div>
+      </a>
+      <a href="products.html" class="home-category-card">
+        <img src="images/cat-fruits.png" alt="Fruits">
+        <div class="home-category-card-body">
+          <p>Fruits</p>
+          <span class="home-category-explore">Explore &rarr;</span>
+        </div>
+      </a>
+      <a href="products.html" class="home-category-card">
+        <img src="images/cat-dairy.png" alt="Dairy">
+        <div class="home-category-card-body">
+          <p>Dairy</p>
+          <span class="home-category-explore">Explore &rarr;</span>
+        </div>
+      </a>
+      <a href="products.html" class="home-category-card">
+        <img src="images/cat-grains.png" alt="Grains">
+        <div class="home-category-card-body">
+          <p>Grains</p>
+          <span class="home-category-explore">Explore &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== WHY FARM DIRECT ===== -->
+  <section class="home-why">
+    <div class="home-why-inner">
+      <div>
+        <h2>Why buy from Farm Direct?</h2>
+        <p>We connect you straight to local farmers, cutting out the middlemen so produce reaches you fresher and farmers earn a fairer price for their work.</p>
+      </div>
+
+      <ul class="home-why-list">
+        <li><span>&#10003;</span> Direct from farmers, not distributors</li>
+        <li><span>&#10003;</span> Better freshness, picked to order</li>
+        <li><span>&#10003;</span> Fairer prices for everyone involved</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="home-final-cta">
+    <h2>Bring farm-fresh food to your table.</h2>
+    <a href="products.html" class="btn-primary">Browse Products</a>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Farm Direct</h3>
+        <p>Connecting farmers and customers directly for fresher food and fairer prices.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>For Farmers</h3>
+        <ul>
+          <li><a href="register.html">Register as Farmer</a></li>
+          <li><a href="login.html">Farmer Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@farmdirect.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2024 Farm Direct. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts: data.js must load before main.js/products so the "products" array exists -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Page-specific script: shows a handful of featured products -->
+  <script>
+
+    // Pick a few products from different categories to feature on the home page
+    var featuredIds = [1, 4, 17, 7, 9, 2, 20, 14];
+    var featuredProducts = products.filter(function (product) {
+      return featuredIds.includes(product.id);
+    });
+
+    var featuredGrid = document.getElementById("featuredProductGrid");
+
+    for (var i = 0; i < featuredProducts.length; i++) {
+      featuredGrid.innerHTML = featuredGrid.innerHTML + buildProductCardHTML(featuredProducts[i]);
+    }
+
+    // Wire up the View Product / Add to Cart buttons on these cards
+    attachProductCardEvents(featuredGrid);
+
+  </script>
+
+</body>
+</html>

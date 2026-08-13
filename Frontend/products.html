@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Farm Direct</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Farm<span>Direct</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="navGreeting" class="nav-greeting nav-hidden"></li>
+        <li id="navLoginLink"><a href="login.html">Login</a></li>
+        <li id="navRegisterLink"><a href="register.html">Register</a></li>
+        <li id="navSellLink" class="nav-hidden"><a href="sell.html">Sell Products</a></li>
+        <li id="navLogoutLink" class="nav-hidden"><a href="#" onclick="logoutUser()">Logout</a></li>
+        <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="page-header">
+    <h1>Our Products</h1>
+    <p>Fresh produce, straight from local farmers to your table.</p>
+  </section>
+
+  <!-- ===== SEARCH + FILTER TOOLBAR ===== -->
+  <div class="products-toolbar">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search name, category, farmer...">
+
+    <select id="categoryFilter" class="filter-select">
+      <option value="all">All Categories</option>
+      <option value="vegetables">Vegetables</option>
+      <option value="fruits">Fruits</option>
+      <option value="dairy">Dairy</option>
+      <option value="grains">Grains</option>
+    </select>
+
+    <div class="price-filter">
+      <input type="number" id="minPrice" placeholder="Min ₹" min="0">
+      <span>-</span>
+      <input type="number" id="maxPrice" placeholder="Max ₹" min="0">
+    </div>
+
+    <select id="sortSelect" class="filter-select">
+      <option value="default">Sort: Default</option>
+      <option value="priceLowHigh">Price: Low to High</option>
+      <option value="priceHighLow">Price: High to Low</option>
+      <option value="nameAZ">Name: A-Z</option>
+      <option value="ratingHighLow">Rating: High to Low</option>
+    </select>
+
+    <label class="organic-filter">
+      <input type="checkbox" id="organicOnly">
+      Organic Only
+    </label>
+  </div>
+
+  <p class="toolbar-results-count" id="resultsCount"></p>
+
+  <!-- ===== PRODUCT LISTING ===== -->
+  <section class="products-listing">
+    <div class="product-grid" id="productGrid">
+      <!-- Product cards get added here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Farm Direct</h3>
+        <p>Connecting farmers and customers directly for fresher food and fairer prices.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>For Farmers</h3>
+        <ul>
+          <li><a href="register.html">Register as Farmer</a></li>
+          <li><a href="login.html">Farmer Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@farmdirect.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2024 Farm Direct. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts: data.js must load before main.js/products.js since they use the products array -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Farm Direct</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/products.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Farm<span>Direct</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="navGreeting" class="nav-greeting nav-hidden"></li>
+        <li id="navLoginLink"><a href="login.html">Login</a></li>
+        <li id="navRegisterLink"><a href="register.html">Register</a></li>
+        <li id="navSellLink" class="nav-hidden"><a href="sell.html">Sell Products</a></li>
+        <li id="navLogoutLink" class="nav-hidden"><a href="#" onclick="logoutUser()">Logout</a></li>
+        <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCT DETAILS SECTION -->
+  
+  <section class="section product-details" id="productDetails">
+    <p>Loading product...</p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Farm Direct</h3>
+        <p>Connecting farmers and customers directly for fresher food and fairer prices.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>For Farmers</h3>
+        <ul>
+          <li><a href="register.html">Register as Farmer</a></li>
+          <li><a href="login.html">Farmer Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@farmdirect.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2024 Farm Direct. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+
+
+  <script>
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var productId = Number(urlParams.get("id"));
+
+    // ---------- FIND THE MATCHING PRODUCT ----------
+    var currentProduct = null;
+
+    for (var i = 0; i < products.length; i++) {
+      if (products[i].id === productId) {
+        currentProduct = products[i];
+      }
+    }
+
+    // ---------- DISPLAY THE PRODUCT ----------
+    var detailsContainer = document.getElementById("productDetails");
+
+    if (currentProduct === null) {
+      detailsContainer.innerHTML = "<p>Product not found. <a href='products.html'>Go back to products</a></p>";
+    } else {
+
+      // Badge shown next to the image (Organic or Farm Fresh)
+      var badgeHTML = "<span class='badge'>Farm Fresh</span>";
+      if (currentProduct.isOrganic === true) {
+        badgeHTML = badgeHTML + "<span class='badge badge-organic'>Organic</span>";
+      }
+
+      var detailsHTML =
+        "<div class='details-wrapper'>" +
+        "<div class='details-image'>" +
+        badgeHTML +
+        "<img src='" + currentProduct.image + "' alt='" + currentProduct.name + "'>" +
+        "</div>" +
+        "<div class='details-info'>" +
+        "<h1>" + currentProduct.name + "</h1>" +
+        "<p class='details-category'>Category: " + currentProduct.category + "</p>" +
+        buildRatingHTML(currentProduct.rating) +
+        "<p class='details-farmer'>Sold by " + currentProduct.farmer + "</p>" +
+        "<p class='details-desc'>" + currentProduct.description + "</p>" +
+        "<p class='details-price'>₹" + currentProduct.price + " / " + currentProduct.unit + "</p>" +
+        "<p class='details-availability'>\u2713 In stock and ready to ship</p>" +
+
+        "<div class='quantity-selector'>" +
+        "<label>Quantity:</label>" +
+        "<div class='qty-controls'>" +
+        "<button id='decreaseBtn'>-</button>" +
+        "<span id='quantityValue'>1</span>" +
+        "<button id='increaseBtn'>+</button>" +
+        "</div>" +
+        "</div>" +
+
+        "<p class='total-price'>Total: ₹<span id='totalPrice'>" + currentProduct.price + "</span></p>" +
+
+        "<button id='addToCartBtn' class='btn-primary'>Add to Cart</button>" +
+
+        "<h3 style='margin-top:25px; color: var(--dark-brown);'>Why you'll love it</h3>" +
+        "<ul class='love-list'>" +
+        "<li><span>\u2713</span> Fresh from local farm</li>" +
+        "<li><span>\u2713</span> No unnecessary middlemen</li>" +
+        "<li><span>\u2713</span> Quality checked before dispatch</li>" +
+        "</ul>" +
+
+        "</div>" +
+        "</div>";
+
+      detailsContainer.innerHTML = detailsHTML;
+
+      // ---------- QUANTITY SELECTOR LOGIC ----------
+      var quantity = 1;
+
+      var quantityValueElement = document.getElementById("quantityValue");
+      var totalPriceElement = document.getElementById("totalPrice");
+
+      // Function to update the total price whenever quantity changes
+      function updateTotalPrice() {
+        quantityValueElement.textContent = quantity;
+        totalPriceElement.textContent = currentProduct.price * quantity;
+      }
+
+      // Decrease button
+      document.getElementById("decreaseBtn").addEventListener("click", function () {
+        if (quantity > 1) {
+          quantity = quantity - 1;
+          updateTotalPrice();
+        }
+      });
+
+      // Increase button
+      document.getElementById("increaseBtn").addEventListener("click", function () {
+        quantity = quantity + 1;
+        updateTotalPrice();
+      });
+
+      // Add to Cart button - checks login first (see main.js/cart.js)
+      document.getElementById("addToCartBtn").addEventListener("click", function () {
+        handleAddToCart(currentProduct, quantity);
+      });
+    }
+
+  </script>
+
+</body>
+</html>

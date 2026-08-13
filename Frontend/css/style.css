@@ -1,0 +1,650 @@
+/* =====================================================
+   FARM DIRECT — CORE STYLESHEET
+   Design system: light-green page canvas, white content
+   surfaces, dark-green typography, green accents.
+   ===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ---- Design system ---- */
+  --bg: #EAF6E4;          /* page canvas */
+  --surface: #FFFFFF;     /* cards, forms, inputs */
+  --dark-green: #174D32;  /* headings, primary text, primary buttons */
+  --green: #2F7D4A;       /* links, secondary buttons, hover states, accents */
+  --soft-green: #D8EBCF;  /* subtle section backgrounds, badges, selected states */
+  --border: #C5DCC0;      /* borders */
+  --muted: #587463;       /* secondary/muted text */
+  --gold: #B88935;        /* ratings and small highlights only */
+
+  /* status colors (muted, restrained) */
+  --error: #B3401F;
+  --error-dark: #8C3016;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--dark-green);
+  line-height: 1.6;
+  background-color: var(--bg);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================= */
+/* BUTTONS                       */
+/* ============================= */
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--dark-green);
+  color: var(--surface);
+  padding: 12px 28px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--green);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--green);
+  border: 2px solid var(--green);
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--green);
+  color: var(--surface);
+}
+
+.btn-outline-orange {
+  background-color: var(--surface);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline-orange:hover {
+  background-color: var(--gold);
+  color: var(--surface);
+}
+
+.btn-disabled {
+  background-color: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+/* ============================= */
+/* NAVIGATION BAR                */
+/* ============================= */
+
+.navbar {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(23, 77, 50, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--dark-green);
+}
+
+.logo span {
+  color: var(--green);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--dark-green);
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.nav-hidden {
+  display: none;
+}
+
+.nav-greeting {
+  font-weight: 600;
+  color: var(--green);
+  background-color: var(--soft-green);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.nav-links .cart-link {
+  background-color: var(--dark-green);
+  color: var(--surface);
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.nav-links .cart-link:hover {
+  background-color: var(--green);
+  color: var(--surface);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--dark-green);
+}
+
+/* ============================= */
+/* PAGE HEADER (products, about, etc.) */
+/* ============================= */
+
+.page-header {
+  background-color: var(--soft-green);
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.page-header h1 {
+  color: var(--dark-green);
+  margin-bottom: 8px;
+}
+
+/* ============================= */
+/* HERO BANNER (video background) */
+/* ============================= */
+
+.hero {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  background-color: var(--dark-green); /* shows while video loads */
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark-green overlay so hero text stays readable over the video */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(23, 77, 50, 0.5);
+  z-index: 1;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--surface);
+  padding: 20px;
+}
+
+.hero-text h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  max-width: 750px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  max-width: 600px;
+  margin-bottom: 25px;
+}
+
+/* ============================= */
+/* GENERAL SECTION STYLING       */
+/* ============================= */
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  color: var(--dark-green);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+/* ============================= */
+/* FEATURED PRODUCTS / PRODUCT CARDS */
+/* ============================= */
+
+.featured-products {
+  background-color: var(--surface);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.product-card {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(23, 77, 50, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(23, 77, 50, 0.10);
+}
+
+.product-card .product-image-wrap {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.product-card img {
+  border-radius: 8px;
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* "Farm Fresh" / "Organic" badge on the top corner of a product image */
+.badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: var(--green);
+  color: var(--surface);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 20px;
+}
+
+.badge.badge-organic {
+  background-color: var(--dark-green);
+  left: auto;
+  right: 8px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: var(--dark-green);
+}
+
+.product-card .card-category {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: capitalize;
+  margin-bottom: 6px;
+}
+
+/* Simple star rating display, e.g. ★★★★☆ 4.5 */
+.rating {
+  color: var(--gold);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.rating .rating-number {
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.product-card .price {
+  color: var(--dark-green);
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================= */
+/* WHY CHOOSE FARM DIRECT         */
+/* ============================= */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.why-card {
+  background-color: var(--soft-green);
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.why-card h3 {
+  margin-bottom: 10px;
+  color: var(--dark-green);
+}
+
+/* ============================= */
+/* CATEGORIES                    */
+/* ============================= */
+
+.categories {
+  background-color: var(--surface);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.category-card {
+  background-color: var(--soft-green);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+}
+
+.category-card img {
+  height: 130px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.category-card p {
+  padding: 12px;
+  font-weight: 600;
+  color: var(--dark-green);
+}
+
+/* ============================= */
+/* SIMPLE CTA BAND                */
+/* ============================= */
+
+.cta-band {
+  background-color: var(--dark-green);
+  color: var(--surface);
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-band h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.cta-band .btn-primary {
+  background-color: var(--green);
+}
+
+.cta-band .btn-primary:hover {
+  background-color: var(--soft-green);
+  color: var(--dark-green);
+}
+
+/* ============================= */
+/* FOOTER                        */
+/* ============================= */
+
+.footer {
+  background-color: var(--dark-green);
+  color: var(--soft-green);
+  padding: 50px 20px 20px 20px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer-col h3 {
+  margin-bottom: 15px;
+  color: var(--surface);
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: var(--surface);
+}
+
+.footer-col ul li a:hover {
+  color: var(--soft-green);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 14px;
+}
+
+/* ============================= */
+/* LOGIN-REQUIRED MODAL           */
+/* Built dynamically by main.js and reused on every page */
+/* ============================= */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(23, 77, 50, 0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-box {
+  background-color: var(--surface);
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(23, 77, 50, 0.18);
+}
+
+.modal-box h3 {
+  color: var(--dark-green);
+  margin-bottom: 12px;
+}
+
+.modal-box p {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-actions .btn-secondary {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.modal-actions .btn-secondary:hover {
+  background-color: var(--border);
+  color: var(--dark-green);
+}
+
+/* ============================= */
+/* MEDIA QUERIES (RESPONSIVE)    */
+/* ============================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .product-grid,
+  .why-grid,
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--surface);
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  /* This class gets added by JavaScript to show the menu */
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+
+  .product-grid,
+  .why-grid,
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    height: 420px;
+  }
+
+  .hero-text h1 {
+    font-size: 26px;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+  }
+}

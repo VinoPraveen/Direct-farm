@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Farm Direct</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Farm<span>Direct</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="navGreeting" class="nav-greeting nav-hidden"></li>
+        <li id="navLoginLink"><a href="login.html">Login</a></li>
+        <li id="navRegisterLink"><a href="register.html">Register</a></li>
+        <li id="navSellLink" class="nav-hidden"><a href="sell.html">Sell Products</a></li>
+        <li id="navLogoutLink" class="nav-hidden"><a href="#" onclick="logoutUser()">Logout</a></li>
+        <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="payment-section">
+    <h1>Checkout</h1>
+
+    <div class="checkout-steps">
+      <span>1. Cart</span>
+      <span class="step-active">2. Payment</span>
+      <span>3. Confirmation</span>
+    </div>
+
+    <!-- ===== PAYMENT FORM VIEW (shown first) ===== -->
+    <div id="paymentFormView">
+      <div class="payment-layout">
+
+        <div class="payment-main">
+
+          <!-- ---------- PAYMENT METHOD ---------- -->
+          <div class="payment-box">
+            <h2>Payment Method</h2>
+
+            <div class="payment-methods">
+              <div class="payment-method-option" id="methodCOD">
+                <span class="method-name">💵 Cash on Delivery</span>
+              </div>
+
+              <div class="payment-method-option disabled">
+                <span class="method-name">📱 UPI</span>
+                <span class="coming-soon-tag">Coming Soon</span>
+              </div>
+
+              <div class="payment-method-option disabled">
+                <span class="method-name">💳 Credit / Debit Card</span>
+                <span class="coming-soon-tag">Coming Soon</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------- DELIVERY ADDRESS ---------- -->
+          <div class="payment-box" id="addressForm">
+            <h2>Delivery Address</h2>
+
+            <form id="placeOrderForm">
+              <div class="address-grid">
+
+                <div class="form-group full-width">
+                  <label for="deliveryName">Full Name</label>
+                  <input type="text" id="deliveryName" placeholder="Enter your full name">
+                  <p class="error-text" id="deliveryNameError">Please enter your name.</p>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="deliveryPhone">Phone Number</label>
+                  <input type="text" id="deliveryPhone" placeholder="10 digit phone number">
+                  <p class="error-text" id="deliveryPhoneError">Please enter a valid 10 digit phone number.</p>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="deliveryAddress">Address</label>
+                  <textarea id="deliveryAddress" placeholder="House no., street, area..."></textarea>
+                  <p class="error-text" id="deliveryAddressError">Please enter your address.</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="deliveryCity">City</label>
+                  <input type="text" id="deliveryCity" placeholder="City">
+                  <p class="error-text" id="deliveryCityError">Please enter your city.</p>
+                </div>
+
+                <div class="form-group">
+                  <label for="deliveryState">State</label>
+                  <input type="text" id="deliveryState" placeholder="State">
+                  <p class="error-text" id="deliveryStateError">Please enter your state.</p>
+                </div>
+
+                <div class="form-group full-width">
+                  <label for="deliveryPincode">Pincode</label>
+                  <input type="text" id="deliveryPincode" placeholder="6 digit pincode">
+                  <p class="error-text" id="deliveryPincodeError">Please enter a valid 6 digit pincode.</p>
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn-primary">Place Order</button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- ---------- ORDER SUMMARY SIDEBAR ---------- -->
+        <div class="payment-side">
+          <h2>Order Summary</h2>
+
+          <div id="orderSummaryItems"></div>
+
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>₹<span id="paySubtotal">0</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span>₹<span id="payDelivery">0</span></span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span>₹<span id="payTotal">0</span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== ORDER CONFIRMATION VIEW (hidden until order is placed) ===== -->
+    <div id="orderConfirmationView" class="payment-box order-confirmation" style="display: none;">
+      <div class="success-icon">🎉</div>
+      <h2>Order Placed Successfully!</h2>
+
+      <div class="order-id-box">Order ID: <span id="confirmOrderId"></span></div>
+
+      <p>Payment Method: Cash on Delivery</p>
+      <p>Total: ₹<span id="confirmOrderTotal"></span></p>
+      <p>Estimated delivery: 1-2 business days</p>
+      <p style="margin-top: 15px;">Your fresh produce is on its way! 🌱</p>
+
+      <a href="products.html" class="btn-primary" style="margin-top: 20px; display: inline-block;">Continue Shopping</a>
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Farm Direct</h3>
+        <p>Connecting farmers and customers directly for fresher food and fairer prices.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>For Farmers</h3>
+        <ul>
+          <li><a href="register.html">Register as Farmer</a></li>
+          <li><a href="login.html">Farmer Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@farmdirect.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2024 Farm Direct. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

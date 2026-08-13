@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - Farm Direct</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Farm<span>Direct</span></a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="navGreeting" class="nav-greeting nav-hidden"></li>
+        <li id="navLoginLink"><a href="login.html">Login</a></li>
+        <li id="navRegisterLink"><a href="register.html">Register</a></li>
+        <li id="navSellLink" class="nav-hidden"><a href="sell.html">Sell Products</a></li>
+        <li id="navLogoutLink" class="nav-hidden"><a href="#" onclick="logoutUser()">Logout</a></li>
+        <li><a href="cart.html" class="cart-link">Cart (<span id="cartCount">0</span>)</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CART SECTION ===== -->
+  <section class="cart-section">
+    <h1>Your Shopping Cart</h1>
+
+    <!-- Cart items get added here by cart.js -->
+    <div id="cartItemsContainer"></div>
+
+    <!-- Subtotal / delivery / grand total + checkout -->
+    <div class="cart-summary">
+      <p class="free-delivery-note">Free delivery on orders over ₹300</p>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>₹<span id="subtotalValue">0</span></span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery Fee</span>
+        <span>₹<span id="deliveryValue">0</span></span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>₹<span id="grandTotal">0</span></span>
+      </div>
+
+      <button class="btn-primary" id="checkoutBtn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Farm Direct</h3>
+        <p>Connecting farmers and customers directly for fresher food and fairer prices.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>For Farmers</h3>
+        <ul>
+          <li><a href="register.html">Register as Farmer</a></li>
+          <li><a href="login.html">Farmer Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: support@farmdirect.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+
+    <p class="footer-bottom">© 2024 Farm Direct. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
